@@ -19,7 +19,6 @@ class Board {
             string ss;
             for (int i = 0; i < boardSize; ++i) {
                 getline(numStream, ss);
-                // cout << ss << endl;
 
                 istringstream isstream(ss);
                 string s;
@@ -28,23 +27,15 @@ class Board {
                 }
             }
             marked.assign(boardSize*boardSize, false);
-
-            // for (int i = 0; i < boardSize*boardSize; ++i) {
-            //     cout << board[i] << ' ';
-            //     if ((i+1) % 5 == 0) cout << endl;
-            // }
         }
 
         bool markBoard(int num) {
             for (int i = 0; i < boardSize*boardSize; ++i) {
-                // cout << marked[i] << " ";
                 if (num == board[i]) {
                     marked[i] = true;
-                    // cout << endl;
                     return true;
                 }
             }
-                // cout << endl;
             return false;
         }
 
@@ -53,13 +44,9 @@ class Board {
                 int colMarkSum = 0;
                 int rowMarkSum = 0;
                 for (int j = 0; j < boardSize; ++j) {
-                    // cout << marked[j * boardSize + i] << ' ';
                     if (marked[j * boardSize + i]) colMarkSum++;
                     if (marked[i * boardSize + j]) rowMarkSum++;
                 }
-                // cout << endl;
-
-                // cout << colMarkSum << " " << rowMarkSum << endl;
 
                 if (rowMarkSum == boardSize || colMarkSum == boardSize) return true;
             }
@@ -109,7 +96,6 @@ int playBingo(string filename) {
         for (auto &b: boards) {
             auto marked = b.markBoard(n);
             if (marked) {
-                // cout << "Marked" << endl;
                 auto bingo = b.checkBingo();
 
                 if (bingo) {
@@ -158,7 +144,6 @@ int loseBingo(string filename) {
             if (hasWon[i]) continue;
             auto marked = boards[i].markBoard(n);
             if (marked) {
-                // cout << "Marked" << endl;
                 auto bingo = boards[i].checkBingo();
 
                 if (bingo) {
